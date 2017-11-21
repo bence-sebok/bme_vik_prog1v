@@ -1,6 +1,6 @@
-<<<<<<< HEAD:lancolt_lista/lancolt_lista.c
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef enum { VILLANY, INFO } szak; // egy adott hallgató villanyos vagy infós
 
@@ -269,4 +269,3 @@ int main()
 	torol_lista(lista_hallgatok);
 	return 0;
 }
->>>>>>> a202014f2cd9ec37bf49726b3823a76bc0f6d65e:lancolt_lista.c
