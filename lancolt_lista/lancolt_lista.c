@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -20,7 +20,7 @@ typedef struct listaelem
 	struct listaelem * kov; // A listában következő listaelemre mutató segédpointer.
 } listaelem;
 
-// Egy hallgató minden adatának kií­rása.
+// Egy hallgató minden adatának kiírása.
 void kiir_hallgato(hallgato h)
 {
 	printf("HALLGATO: %s %d ", h.neptun, h.szuletesiEv);
@@ -40,17 +40,17 @@ void kiir_hallgato(hallgato h)
 	printf("\n");
 }
 
-// Egy listaelem kií­rása = listaelemben tárolt hallgató adatainak kií­rása.
+// Egy listaelem kiírása = listaelemben tárolt hallgató adatainak kiírása.
 void kiir_listaelem(listaelem * l)
 {
 	kiir_hallgato(l->h);
 }
 
-// Teljes lista kií­rása.
+// Teljes lista kiírása.
 void kiir_lista(listaelem * lista_feje)
 {
 	listaelem * seged;
-	// Egyesével minden egyes hallgató kií­rása a lista elejétől a végéig.
+	// Egyesével minden egyes hallgató kiírása a lista elejétől a végéig.
 	for (seged = lista_feje; seged != NULL; seged = seged->kov)
 	{
 		kiir_listaelem(seged);
@@ -59,8 +59,8 @@ void kiir_lista(listaelem * lista_feje)
 
 // Beszúr egy új hallgatót a meglévő láncolt listába.
 // Az új hallgatót a lista elejére fűzi be.
-// Mivel a lista elejére fűzünk be, í­gy változik a lista feje, mert már az újonnan beszúrt hallgatóra kell mutasson.
-// Az új fejet ezért visszaadjuk a return-nel, az új fej: a most beszúrt hallgató cí­me.
+// Mivel a lista elejére fűzünk be, így változik a lista feje, mert már az újonnan beszúrt hallgatóra kell mutasson.
+// Az új fejet ezért visszaadjuk a return-nel, az új fej: a most beszúrt hallgató címe.
 listaelem * uj_listaelem(listaelem * lista_feje, hallgato uj_hallgato)
 {
 	// Foglalunk megfelelő méretű - sizeof(listaelem) - helyet a memóriában egy új hallgatónak.
@@ -75,14 +75,14 @@ listaelem * uj_listaelem(listaelem * lista_feje, hallgato uj_hallgato)
 		uj->h.kepzes = uj_hallgato.kepzes;
 		uj->kov = lista_feje; // Lista eddigi elejére mutat az új elem kov pointere.
 
-		lista_feje = uj; // Lista eleje mostantól legyen az új elem cí­me = lista elejére fűzünk.
+		lista_feje = uj; // Lista eleje mostantól legyen az új elem címe = lista elejére fűzünk.
 	}
 
-	// Mivel változik a lista elejére mutató pointer, vissza kell térnünk az új cí­mmel, ami a lista új eleje.
+	// Mivel változik a lista elejére mutató pointer, vissza kell térnünk az új címmel, ami a lista új eleje.
 	return lista_feje;
 }
 
-// Láncolt lista épí­tése szöveges (txt) fájl tartalmából.
+// Láncolt lista építése szöveges (txt) fájl tartalmából.
 // Bemeneti paraméter: fájl neve (például ez_egy_fajl.txt).
 // Kimenet: az elkészült láncolt lista.
 listaelem * fajl_beolvasas(char * fajlnev)
@@ -98,12 +98,12 @@ listaelem * fajl_beolvasas(char * fajlnev)
 	// Ha nem sikerült megnyitni a fájlt ...
 	if (fajl == NULL)
 	{
-		// akkor értesí­tjük erről a felhasználót.
+		// akkor értesítjük erről a felhasználót.
 		printf("Nem tudom megnyitni a fajlt: %s\n", fajlnev);
 		return NULL; // Ha nincs miből listát épí­teni, akkor üres listát adjunk vissza.
 	}
 
-	// Addig olvasunk be, amí­g a lenti formátumban be tudunk olvasni 3 adatot soronként.
+	// Addig olvasunk be, amíg a lenti formátumban be tudunk olvasni 3 adatot soronként.
 	// Formátum: "%s %d %d\n" = minden sorban NEPTUN SZÜL.ÉV SZAK
 	// fscanf visszatérési értéke a beolvasott adatok száma: mivel neptun, év és szak adatokat olvasunk be, ezért ez itt 3.
 	while (fscanf(fajl, "%s %d %d\n", &uj_hallgato.neptun, &uj_hallgato.szuletesiEv, &uj_hallgato.kepzes) == 3)
@@ -115,7 +115,7 @@ listaelem * fajl_beolvasas(char * fajlnev)
 	// Ha nem sikerült bezárni a fájlt (például USB-n és a program futása közben kihúzták) ...
 	if (fclose(fajl) != 0)
 	{
-		// akkor értesí­tjük erről a felhasználót.
+		// akkor értesítjük erről a felhasználót.
 		printf("Nem tudom bezarni a fajlt: %s\n", fajlnev);
 	}
 
@@ -123,13 +123,13 @@ listaelem * fajl_beolvasas(char * fajlnev)
 	return lista_feje;
 }
 
-// Teljes lista felszabadí­tása.
+// Teljes lista felszabadítása.
 void torol_lista(listaelem * lista_feje)
 {
 	// Változók deklarációja.
 	listaelem * seged = lista_feje; // Segéd pointer a lista bejárására.
 	listaelem * torlo_pointer; // Minden egyes listaelemet törölni fogunk ezzel a pointerrel.
-	while (seged != NULL) // Addig törlünk, amí­g még van listaelem.
+	while (seged != NULL) // Addig törlünk, amíg még van listaelem.
 	{
 		torlo_pointer = seged; // Ezt fogjuk törölni.
 		seged = seged->kov; // Lépjünk tovább a listában.
@@ -193,7 +193,7 @@ listaelem * legidosebb_hallgato(listaelem * lista_feje)
 		}
 	}
 
-	// VIGYíZAT: ha üres listát kap a függvény, akkor NULL pointerrel tér vissza, vagyis a visszatérési értéket ellenőrizni kell NULL pointerre.
+	// VIGYÁZAT: ha üres listát kap a függvény, akkor NULL pointerrel tér vissza, vagyis a visszatérési értéket ellenőrizni kell NULL pointerre.
 	return legidosebb;
 }
 
@@ -204,14 +204,14 @@ int main()
 	int villanyos_hallgatok;
 	listaelem * legidosebb = NULL;
 
-	// Lista felépí­tése.
+	// Lista felépítése.
 	lista_hallgatok = fajl_beolvasas("lancolt_lista_bemenet.txt");
 
-	// Teljes lista kií­rása.
+	// Teljes lista kiírása.
 	printf("Teljes lancolt lista kiirasa:\n");
 	kiir_lista(lista_hallgatok);
 
-	// Villamosmérnök hallgatók számának meghatározása, majd kií­rása.
+	// Villamosmérnök hallgatók számának meghatározása, majd kiírása.
 	villanyos_hallgatok = villanyosok_szama(lista_hallgatok);
 	printf("\nVillamosmernok hallgatok szama: %d\n", villanyos_hallgatok);
 
