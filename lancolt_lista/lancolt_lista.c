@@ -113,7 +113,8 @@ listaelem * fajl_beolvasas(char * fajlnev)
 	}
 
 	// Ha nem sikerült bezárni a fájlt (például USB-n és a program futása közben kihúzták) ...
-	if (fclose(fajl) != 0)
+        // fclose visszatérési értéke 0, ha sikerült bezárni a fájlt, vagyis akkor nem sikerült bezárni, ha a visszatérési értéke nem nulla
+	if (fclose(fajl) != 0) // a feltétel vizsgálatánál próbálom bezárni a fájlt
 	{
 		// akkor értesítjük erről a felhasználót.
 		printf("Nem tudom bezarni a fajlt: %s\n", fajlnev);
